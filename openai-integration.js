@@ -1,8 +1,9 @@
-// <!-- Token for chatgpt intergration : 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 -->
 import OpenAI from 'https://cdn.skypack.dev/openai';
-import { GITHUB_TOKEN } from './config.js';
+// import { GITHUB_TOKEN } from './config.js';
 
-const token = GITHUB_TOKEN;
+// const token = GITHUB_TOKEN;
+const token = process.env.API_KEY;
+
 
 export async function main(userCommand) {
     const client = new OpenAI({
