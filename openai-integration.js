@@ -1,8 +1,7 @@
 import OpenAI from 'https://cdn.skypack.dev/openai';
-// import { GITHUB_TOKEN } from './config.js';
+import { GITHUB_TOKEN } from './config.js';
 
-// const token = GITHUB_TOKEN;
-const token = process.env.API_KEY;
+const token = GITHUB_TOKEN;
 
 
 export async function main(userCommand) {
