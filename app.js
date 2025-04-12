@@ -5,33 +5,46 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(voiceButton){
         voiceButton.addEventListener('click',startListening);
     }
+    function clearTaskOutput(){
+        const taskInfo = document.querySelector('.task.info');
+        if(taskInfo){
+            document.getElementById('task').textContent = '';
+            document.getElementById('urgency').textContent = '';
+            document.getElementById('datetime').textContent = '';
+        }
+
+        const confirmationArea = document.getElementById('confirmation-area');
+        if(confirmationArea){
+            confirmationArea.innerHTML = '';
+        }
+    }
 })
 
 function startListening(){
-    // console.log("Listening Started")
-    // if('webkitSpeechRecognition' in window){
-    //     const recognition = new webkitSpeechRecognition();
-    //     recognition.continuous = false;
-    //     recognition.interimResults = false; 
-    //     recognition.lang = "en-US";
+    console.log("Listening Started")
+    if('webkitSpeechRecognition' in window){
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false; 
+        recognition.lang = "en-US";
 
-    //     recognition.onstart = function(){
-    //         console.log("Listening Started");
-    //         // clearTaskOutput();
-    //     }
-    //     recognition.onresult = function(event){
-    //         const transcript = event.results[0][0].transcript
-    //         console.log("Got Transcript")
-    //         processCommand(transcript)
-    //     }
-    //     recognition.onerror = function(event){
-    //         console.log("Error in Recognition")
-    //         console.log(event.error)
-    //     }
-    //     recognition.start();
-    // }else{
-    //     alert("Not Supporting by the Browser")
-    // }
+        recognition.onstart = function(){
+            console.log("Listening Started");
+            clearTaskOutput();
+        }
+        recognition.onresult = function(event){
+            const transcript = event.results[0][0].transcript
+            console.log("Got Transcript")
+            processCommand(transcript)
+        }
+        recognition.onerror = function(event){
+            console.log("Error in Recognition")
+            console.log(event.error)
+        }
+        recognition.start();
+    }else{
+        alert("Not Supporting by the Browser")
+    }
     processWithAI("Add clean car on 25th March 2025 its highly urgent");
 }
 
